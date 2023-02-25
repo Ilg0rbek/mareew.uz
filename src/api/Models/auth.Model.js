@@ -8,7 +8,7 @@ const sequelize = new Sequelize(process.env.PG_DATABASE, process.env.PG_USER, pr
   host: process.env.PG_HOST, dialect: 'postgres',
 });
 
-class Auth extends Model {}
+export class Auth extends Model {}
 
 Auth.init(
   {

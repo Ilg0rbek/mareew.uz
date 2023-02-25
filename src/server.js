@@ -1,5 +1,4 @@
 import fileUpload from "express-fileupload";
-import bodyParser from "body-parser";
 import express from "express";
 import cors from "cors";
 import { resolve } from "path";
@@ -13,15 +12,15 @@ import routes from "#api/routes";
 
   app.use(cors());
 
-  app.use(morgan("dev"));
-
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+  if(process.env.NODE_ENV === 'development') {
+    app.use(morgan("dev"));
+  }
 
   // static files
   app.use(express.static(resolve(process.cwd(), "src", "uploads")));
 
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }))
 
   app.use(
     fileUpload({
@@ -33,11 +32,7 @@ import routes from "#api/routes";
 
   app.use("/api", routes);
 
-  try {
-    await app.listen(process.env.PORT, () => {
-      console.log(`Server running on port ${process.env.PORT}`);
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+  });
 })();

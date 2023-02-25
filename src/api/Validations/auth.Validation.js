@@ -1,21 +1,23 @@
 import Joi from "joi"
+import { phone_number } from "./base.Validator"
 
 const LOGIN = (data) => {
     const schema = Joi.object({
-        user_phone: Joi.string().pattern(new RegExp('^998[389][012345789][0-9]{7}$')).required(),
+        user_phone: phone_number.required(),
         user_password: Joi.string().min(3).required()
     })
     try {
-        if (schema.validate(data).error) {
+        const result = schema.validate(data)
+        if (result.error) {
             return {
-                status: false, message: schema.validate(data).error.details[0].message,
+                status: false, message: result.error.message,
             }
         }
         return {
-            status: true
+            status: true, message: null
         }
     } catch (err) {
-        return err
+        return { status: false, message: err.message }
     }
 }
 

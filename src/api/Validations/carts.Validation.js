@@ -44,9 +44,9 @@ const POST = (data) => {
 const PUT = (data) => {
 	const schema = Joi.object({
         cart_id: Joi.number().required(),
-        cart_user_id: Joi.number().required(),
+        cart_user_id: Joi.number(),
         cart_product_id: Joi.number(),
-        cart_quantity: Joi.number().required(),
+        cart_quantity: Joi.number(),
 	})
 	try{
 		if(schema.validate(data).error) {

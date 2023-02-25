@@ -1,5 +1,5 @@
 import validation from "#validations/auth.Validation"
-import JWT from "#utils/jwt"
+// import JWT from "#utils/jwt"
 import Auth from "#repo/auth.Model"
 
 const LOGIN = async  (req, res) => {
