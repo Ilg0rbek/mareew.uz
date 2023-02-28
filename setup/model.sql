@@ -51,7 +51,7 @@ drop table if exists brands cascade;
 create table brands(
 	id int generated always as identity primary key,
 	name varchar(50) not null,
-	discreption
+	description
 	images json ['image'],
 	is_hide
 );
