@@ -1,109 +1,72 @@
-import Joi from "joi"
+import Joi from "joi";
+import {
+  array,
+  number,
+  phone_number,
+  string,
+  validate_data,
+} from "./validation";
 
 const GET_ONE = (data) => {
-	const schema = Joi.object({
-		order_id: Joi.number().required() 
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}	
-}
+  const schema = Joi.object({
+    order_id: number.required(),
+  });
+  validate_data(schema, data);
+};
 
 const POST = (data) => {
-	const schema = Joi.object({
-		order_user_id: Joi.number().required(),
-		order_content: Joi.array().items(
-			Joi.object({
-				order_product_id: Joi.number().required(),
-				order_quantity: Joi.number().required(),
-				order_product_name: Joi.string().required(),
-				order_image: Joi.string(),
-				order_color: Joi.string(),
-			})
-		).required(),
-		order_status: Joi.string().valid("pending", "approve", "denied"),
-		order_address: Joi.string().required(),
-		order_phone_number: Joi.string().pattern(new RegExp('^998[389][012345789][0-9]{7}$')).required()
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    order_user_id: number.required(),
+    order_content: array
+      .items(
+        Joi.object({
+          order_product_id: number.required(),
+          order_quantity: number.required(),
+          order_product_name: string.required(),
+          order_image: string,
+          order_color: string,
+        })
+      )
+      .required(),
+    order_status: string.valid("pending", "approve", "denied"),
+    order_address: string.required(),
+    order_phone_number: phone_number,
+  });
+  validate_data(schema, data);
+};
 
 const PUT = (data) => {
-	const schema = Joi.object({
-		order_id: Joi.number().required(),
-		order_user_id: Joi.number(),
-		order_content: Joi.array().items(
-			Joi.object({
-				order_product_id: Joi.number().required(),
-				order_quantity: Joi.number().required(),
-				order_product_name: Joi.string().required(),
-				order_image: Joi.string(),
-				order_color: Joi.string(),
-			})
-		).required(),
-		order_status: Joi.string().valid('pending', 'approve', 'denied'),
-		order_phone_number: Joi.string().pattern(new RegExp('^998[389][012345789][0-9]{7}$')),
-		order_address: Joi.string(),
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    order_id: number.required(),
+    order_user_id: number,
+    order_content: array
+      .items(
+        Joi.object({
+          order_product_id: number.required(),
+          order_quantity: number.required(),
+          order_product_name: string.required(),
+          order_image: string,
+          order_color: string,
+        })
+      )
+      .required(),
+    order_status: string.valid("pending", "approve", "denied"),
+    order_phone_number: phone_number,
+    order_address: string,
+  });
+  validate_data(schema, data);
+};
 
 const DELETE = (data) => {
-	const schema = Joi.object({
-		order_id: Joi.number().required()
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    order_id: number.required(),
+  });
+  validate_data(schema, data);
+};
 
 export default {
-	GET_ONE,
-	POST,
-	PUT,
-	DELETE
-}
+  GET_ONE,
+  POST,
+  PUT,
+  DELETE,
+};

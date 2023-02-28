@@ -1,106 +1,46 @@
-import Joi from "joi"
+import Joi from "joi";
+import { number, string, validate_data } from "./validation";
 
 const POST = (data) => {
-	const schema = Joi.object({
-		category_name: Joi.string().min(3).required()
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    category_name: string.min(3).required(),
+  });
+  validate_data(schema, data);
+};
 
 const PUT = (data) => {
-	const schema = Joi.object({
-		category_id: Joi.number().required(),
-		category_name: Joi.string().min(3).required()
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    category_id: number.required(),
+    category_name: string.min(3).required(),
+  });
+  validate_data(schema, data);
+};
 
 const DELETE = (data) => {
-	const schema = Joi.object({
-		category_id: Joi.number().required(),
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
-
+  const schema = Joi.object({
+    category_id: number.required(),
+  });
+  validate_data(schema, data);
+};
 
 const GET_ONE = (data) => {
-	const schema = Joi.object({
-		category_id: Joi.number().required()
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    category_id: Joi.number().required(),
+  });
+  validate_data(schema, data);
+};
 
 const GET_PRODUCTS = (data) => {
-	const schema = Joi.object({
-		category_id: Joi.number().required()
-	})
-	try{
-		if(schema.validate(data).error) {
-			return {
-				status: false,
-				message: schema.validate(data).error.details[0].message,
-			}
-		}
-		return {
-			status: true,
-		}
-	}catch(err){
-		return err
-	}
-}
+  const schema = Joi.object({
+    category_id: Joi.number().required(),
+  });
+  validate_data(schema, data);
+};
 
 export default {
-	GET_ONE,
-	GET_PRODUCTS,
-	POST,
-	PUT,
-	DELETE
-}
+  GET_ONE,
+  GET_PRODUCTS,
+  POST,
+  PUT,
+  DELETE,
+};
