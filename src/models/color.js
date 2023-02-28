@@ -1,14 +1,14 @@
 import { DataTypes, Model } from 'sequelize'
-import { sequelize } from "../../config"
+import { sequelize } from "../config/index.js"
 
-export class Category extends Model {}
+export class Color extends Model {}
 
-Category.init({
+Color.init({
     name:{
         type: DataTypes.STRING(50),
 		allowNull: false
-	}
+	}, 
 },	{
 	sequelize,
-	modelName: "Category"
+	modelName: "color"
 })

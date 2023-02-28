@@ -1,6 +1,6 @@
 
 import { Sequelize } from 'sequelize'
-import { PG_DATABASE, PG_HOST, PG_USER, PG_PORT, PG_PASSWORD } from './config'
+import { PG_DATABASE, PG_HOST, PG_USER, PG_PORT, PG_PASSWORD } from './config.js'
 
 const options = {
   dialect: "postgres",

@@ -79,7 +79,7 @@ create table products(
 drop table if exists orders cascade;
 create table orders(
 	id int generated always as identity primary key,
-	id int references users(id) not null,
+	user_id int references users(id) not null,
 	status varchar(50) default 'pending',
 	method: 'card' | 'cash'
 	address varchar(50) not null

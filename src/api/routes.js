@@ -12,10 +12,7 @@ import colorsRouter from "#routes/colors.Router"
 import compareRouter from "#routes/compare.Router"
 import wishlistsRouter from "#routes/wishlists.Router"
 
-
-
-
-const router = express.Router()
+export const router = express.Router()
 
 router.use(authRouter)
 router.use(usersRouter)
@@ -28,5 +25,3 @@ router.use(cartsRouter)
 router.use(colorsRouter)
 router.use(compareRouter)
 router.use(wishlistsRouter)
-
-export default router

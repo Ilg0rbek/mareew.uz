@@ -1,2 +1,2 @@
-export * from './config'
-export * from './db'
+export * from './config.js'
+export * from './db.js'

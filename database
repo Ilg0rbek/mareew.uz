@@ -1,5 +1,5 @@
 #permissions
-
+customer -> read, create order
 admin -> create
 superadmin -> update, remove
 curier -> read, order status update
