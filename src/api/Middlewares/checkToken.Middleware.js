@@ -3,7 +3,7 @@ import '#config/index'
 import JWT from 'jsonwebtoken'
 
 const checkToken = async (req, res, next) => {
-	// try{
+	try{
 		const token = req.headers?.token
 		if (!token) {
 			return res.status(401).json({
@@ -21,13 +21,13 @@ const checkToken = async (req, res, next) => {
 			req.user = decoded
 			next()
 		})
-	// }catch(error){
-	// 	return res.status(400).json({
-	// 		status: 400,
-	// 		message: error.message,
-	// 		data: null
-	// 	})
-	// }
+	}catch(error){
+		return res.status(400).json({
+			status: 400,
+			message: error.message,
+			data: null
+		})
+	}
 }
 
 export default checkToken

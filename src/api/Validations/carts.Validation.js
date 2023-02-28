@@ -19,14 +19,26 @@ const POST = (data) => {
 };
 
 const PUT = (data) => {
-  const schema = Joi.object({
-    cart_id: number.required(),
-    cart_user_id: number.required(),
-    cart_product_id: number,
-    cart_quantity: number.required(),
-  });
-  validate_data(schema, data);
-};
+	const schema = Joi.object({
+        cart_id: Joi.number().required(),
+        cart_user_id: Joi.number(),
+        cart_product_id: Joi.number(),
+        cart_quantity: Joi.number(),
+	})
+	try{
+		if(schema.validate(data).error) {
+			return {
+				status: false,
+				message: schema.validate(data).error.details[0].message,
+			}
+		}
+		return {
+			status: true,
+		}
+	}catch(err){
+		return err
+	}
+}
 
 const DELETE = (data) => {
   const schema = Joi.object({

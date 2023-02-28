@@ -1,25 +1,24 @@
-import pg from 'pg'
 
-const pool = new pg.Pool({
-    user: process.env.PG_USER,
-    port: process.env.PG_PORT,
-    password: process.env.PG_PASSWORD,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE
-    // connectionString: process.env.PG_CONNECTION_STRING
-})
+import { Sequelize } from 'sequelize'
+import { PG_DATABASE, PG_HOST, PG_USER, PG_PORT, PG_PASSWORD } from './config.js'
 
-async function db(query, ...params) {
-    const client = await pool.connect()
-    try {
-        const { rows } = await client.query(query, params.length ? params : null)
-        return rows
-    } catch (error) {
-        console.log("DATABASE ERROR: ", error.message)
-        throw new Error(error.message)
-    } finally {
-        client.release()
-    }
-}
+const options = {
+  dialect: "postgres",
+  host: PG_HOST,
+  port: Number(PG_PORT),
+  logging: false,
+  define: {
+    underscored: true,
+    freezeTableName: true,
+    timestamps: false
+  },
+};
 
-export default db
+export const sequelize = new Sequelize(
+    PG_DATABASE,
+    PG_USER,
+    PG_PASSWORD,
+    options
+);
+
+export { Transaction } from 'sequelize'
