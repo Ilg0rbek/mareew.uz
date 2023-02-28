@@ -82,7 +82,7 @@ create table orders(
 	id int references users(id) not null,
 	status varchar(50) default 'pending',
 	method: 'card' | 'cash'
-	address varchar(50) not null, { lat: '37.447243', long: '127.130416' }
+	address varchar(50) not null
 	phone_number varchar(50) not null,
 	created_at timestamp default current_timestamp,
 	updated_at timestamp null,
