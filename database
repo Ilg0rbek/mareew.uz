@@ -1,0 +1,10 @@
+#permissions
+
+admin -> create
+superadmin -> update, remove
+curier -> read, order status update
+dispatcher -> read, status
+
+#order status
+
+'pending', 'failed' 'approved' 'process' 'delivered'

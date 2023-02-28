@@ -1,6 +1,2 @@
-import dotenv from "dotenv"
-import {resolve} from "path"
-
-dotenv.config({
-	path: resolve(process.cwd(), ".env")
-})
+export * from './config'
+export * from './db'
