@@ -67,7 +67,7 @@ export async function remove(req, res, next) {
         const { error } = commonValidator.id({ id })
         if(error) throw badRequest(error)
 
-        const count = await brandService.removeById(id, payload)
+        const count = await brandService.removeById(id)
         if(count === 0) throw notFound('Brand')
 
         return res.json({ ok: true })

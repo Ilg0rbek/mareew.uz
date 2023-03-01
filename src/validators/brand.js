@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { string, char, array, boolean, integer } from "./base";
+import { string, char, array, boolean, integer } from "./base.js";
 
 export function create(payload) {
     const schema = Joi.object({

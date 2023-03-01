@@ -1,0 +1,1 @@
+export * as brandController from './brand.js'

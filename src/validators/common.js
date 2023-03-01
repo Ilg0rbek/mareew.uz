@@ -1,5 +1,5 @@
 import Joi from "joi"
-import { array, integer } from "./base"
+import { array, integer } from "./base.js"
 
 export function id(payload) {
     const keys = Object.keys(payload)

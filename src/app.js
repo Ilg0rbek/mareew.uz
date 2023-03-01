@@ -8,7 +8,7 @@ import { NODE_ENV } from "./config/index.js";
 
 import { errorHandler } from "./middlewares/errorHandler.js";
 
-// import { routes } from './api/routes/index.js'
+import { root } from './routes/index.js'
 
 export const app = express();
 
@@ -31,7 +31,7 @@ app.use(
   })
 )
 
-// app.use("/api", routes);
+app.use("/api", root);
 
 
 app.use(errorHandler)

@@ -1,5 +1,5 @@
-import { Brand, Product } from '../models'
-import { attributes } from './query'
+import { Brand, Product } from '../models/index.js'
+import { attributes } from './query.js'
 
 export async function all(where) {
     const result = await Brand.findAll({
@@ -31,9 +31,9 @@ export async function create(payload) {
 }
 
 export async function updateById(id, payload) {
-    const [result] = await Brand.update({
+    const [result] = await Brand.update(payload, {
         where: { id }
-    }, payload)
+    })
     return result
 }
 
