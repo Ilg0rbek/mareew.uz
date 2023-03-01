@@ -5,7 +5,7 @@ export class Brand extends Model {}
 
 Brand.init({
 	name: {
-		type: DataTypes.STRING(50),
+		type: DataTypes.STRING(255),
 		allowNull: false
 	},
 	description: {

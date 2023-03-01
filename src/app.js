@@ -6,7 +6,9 @@ import morgan from "morgan";
 
 import { NODE_ENV } from "./config/index.js";
 
-// import { routes } from './api/routes'
+import { errorHandler } from "./middlewares/errorHandler.js";
+
+// import { routes } from './api/routes/index.js'
 
 export const app = express();
 
@@ -30,3 +32,6 @@ app.use(
 )
 
 // app.use("/api", routes);
+
+
+app.use(errorHandler)
