@@ -16,7 +16,7 @@ if(NODE_ENV) {
   app.use(morgan("dev"));
 }
 
-app.use(express.static(resolve(process.cwd(), "src", "uploads")));
+app.use(express.static(resolve(process.cwd(), "uploads")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
